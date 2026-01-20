@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFlow | Git Master</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;900&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #030303;
+            --card: rgba(20, 20, 20, 0.8);
+            --accent: #00ff88;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: var(--bg); 
+            color: white; 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+        }
+
+        /* Background Dinâmico */
+        .bg-glow {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 50% 50%, #111 0%, #000 100%);
+            z-index: -1;
+        }
+
+        header {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, transparent, var(--bg)),
+                        url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-content {
+            text-align: center;
+            backdrop-filter: blur(5px);
+            padding: 40px;
+            border-radius: 30px;
+            background: rgba(0,0,0,0.4);
+        }
+
+        h1 { font-size: clamp(4rem, 12vw, 8rem); font-weight: 900; letter-spacing: -5px; line-height: 0.8; }
+        h1 span { color: var(--accent); }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 50px 20px; }
+
+        /* Section Instalação */
+        .install-section {
+            background: var(--glass);
+            border: 1px solid #222;
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        /* Cards de Comandos com Fotos */
+        .step-card {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            background: var(--card);
+            margin-bottom: 60px;
+            border-radius: 24px;
+            border: 1px solid #222;
+            overflow: hidden;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+        }
+
+        .step-card:hover {
+            transform: scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
+        }
+
+        .img-container {
+            position: relative;
+            overflow: hidden;
+            filter: grayscale(100%) brightness(0.6);
+            transition: 0.6s;
+        }
+
+        .step-card:hover .img-container {
+            filter: grayscale(0%) brightness(1);
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content { padding: 40px; }
+        .content h2 { font-size: 1.8rem; margin-bottom: 15px; display: flex; align-items: center; gap: 15px; }
+        .content p { color: #aaa; margin-bottom: 25px; font-size: 1.1rem; }
+
+        .code-area {
+            background: #000;
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Fira Code', monospace;
+            border: 1px solid #333;
+        }
+
+        code { color: var(--accent); font-size: 0.95rem; }
+
+        .btn-copy {
+            background: var(--accent);
+            color: black;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-copy:hover { transform: scale(1.1); filter: brightness(1.2); }
+
+        @media (max-width: 900px) {
+            .step-card, .install-section { grid-template-columns: 1fr; }
+            .img-container { height: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <header>
+        <div class="hero-content">
+            <h1>GIT<span>HUB</span></h1>
+            <p>DO ZERO AO PUSH INFINITO</p>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <section class="install-section" id="install">
+            <div>
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">0. Instale o <span style="color:var(--accent)">Git Bash</span></h2>
+                <p style="color: #ccc; margin-bottom: 20px;">O Git Bash é o terminal que traz o poder do Linux para o Windows. Sem ele, você fica limitado.</p>
+                <ul style="list-style: none; color: #888;">
+                    <li><i class="fas fa-check-circle" style="color:var(--accent)"></i> Acesse: <a href="https://git-scm.com/" style="color: white;">git-scm.com</a></li>
+                    <li><i class="fas fa-check-circle" style="color:var(--accent)"></i> Baixe a versão para Windows</li>
+                    <li><i class="fas fa-check-circle" style="color:var(--accent)"></i> No instalador, clique em "Next" até o fim</li>
+                </ul>
+            </div>
+            <div style="background: #111; border-radius: 20px; height: 250px; display: flex; align-items: center; justify-content: center;">
+                <i class="fab fa-windows" style="font-size: 5rem; color: #333;"></i>
+            </div>
+        </section>
+
+        <div id="cards-wrapper"></div>
+
+    </div>
+
+    <script>
+        const steps = [
+            { 
+                title: "Inicie o Motor", 
+                desc: "Cria a pasta oculta .git que começa a observar todas as mudanças no seu código.",
+                cmd: "git init",
+                img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2069&auto=format&fit=crop"
+            },
+            { 
+                title: "Quem é você?", 
+                desc: "Diga ao Git seu nome e e-mail para ele saber quem fez as alterações.",
+                cmd: 'git config --global user.name "Seu Nome"',
+                img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop"
+            },
+            { 
+                title: "Prepare tudo", 
+                desc: "Adiciona todos os arquivos novos ou alterados para a 'fila de envio'.",
+                cmd: "git add .",
+                img: "https://images.unsplash.com/photo-1551033406-611cf9a28f67?q=80&w=1974&auto=format&fit=crop"
+            },
+            { 
+                title: "Carimbe a Versão", 
+                desc: "O commit é como um ponto de salvamento num jogo. Você salva o estado atual.",
+                cmd: 'git commit -m "Meu primeiro código"',
+                img: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop"
+            },
+            { 
+                title: "Abra o Caminho", 
+                desc: "Conecta seu computador local ao repositório que você criou no GitHub.",
+                cmd: "git remote add origin https://github.com/user/repo.git",
+                img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2070&auto=format&fit=crop"
+            },
+            { 
+                title: "Decolagem", 
+                desc: "Envia seus arquivos para a nuvem do GitHub. Agora o mundo pode ver!",
+                cmd: "git push -u origin main",
+                img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+            }
+        ];
+
+        const wrapper = document.getElementById('cards-wrapper');
+
+        steps.forEach((s, i) => {
+            wrapper.innerHTML += `
+                <div class="step-card">
+                    <div class="img-container">
+                        <img src="${s.img}" alt="background">
+                    </div>
+                    <div class="content">
+                        <h2><span>0${i+1}.</span> ${s.title}</h2>
+                        <p>${s.desc}</p>
+                        <div class="code-area">
+                            <code id="c-${i}">${s.cmd}</code>
+                            <button class="btn-copy" onclick="copy('c-${i}', this)">Copiar</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        // GSAP
+        gsap.registerPlugin(ScrollTrigger);
+        
+        gsap.utils.toArray(".step-card").forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 90%",
+                },
+                opacity: 0,
+                x: -50,
+                duration: 1,
+                ease: "expo.out"
+            });
+        });
+
+        function copy(id, btn) {
+            const text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text);
+            btn.innerText = "Copiado!";
+            btn.style.background = "white";
+            setTimeout(() => { 
+                btn.innerText = "Copiar"; 
+                btn.style.background = "var(--accent)";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
